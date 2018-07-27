@@ -67,11 +67,11 @@ func yaml2json() {
 	}
 }
 
-func parse(i *interface{}) (err error) {
-	switch in := (*i).(type) {
+func parse(data *interface{}) (err error) {
+	switch d := (*data).(type) {
 	case map[interface{}]interface{}:
-		m := make(map[string]interface{}, len(in))
-		for k, v := range in {
+		m := make(map[string]interface{}, len(d))
+		for k, v := range d {
 			if err = parse(&v); err != nil {
 				return err
 			}
@@ -86,10 +86,10 @@ func parse(i *interface{}) (err error) {
 			}
 			m[s] = v
 		}
-		*i = m
+		*data = m
 	case []interface{}:
-		for i := len(in) - 1; i >= 0; i-- {
-			if err = parse(&in[i]); err != nil {
+		for i := 0; i < len(d); i++ {
+			if err = parse(&d[i]); err != nil {
 				return err
 			}
 		}
