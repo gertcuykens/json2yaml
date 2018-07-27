@@ -15,7 +15,7 @@ import (
 )
 
 var version = "latest"
-var versionFlag = flag.Bool("version", false, fmt.Sprintf("prints current %s version", os.Args[1:]))
+var versionFlag = flag.Bool("version", false, fmt.Sprintf("prints current %s version", os.Args[0]))
 var yaml2jsonFlag = flag.Bool("yaml2json", false, "yaml2json")
 
 func main() {
